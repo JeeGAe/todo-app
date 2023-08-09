@@ -4,21 +4,25 @@ const cors = require('cors');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const axios = require('axios');
-//const todo = require('./src/models/todo');
-const user = require('./src/models/User');
+const usersRouter = require('./src/routes/Users');
+const todosRouter = require('./src/routes/todos');
+const config = require('./config')
 
 const corsOptions = {
   origin : 'http://127.0.0.1:5500', // 해당 URL 주소만 요청 허용
   credentials : true // 사용자 인증이 필요한 리소스를 요청할수 있도록 허용
 };
-const CONNECT_URL = 'mongodb://127.0.0.1:27017/JeeGAe';
-mongoose.connect(CONNECT_URL)
+
+mongoose.connect(config.MONGODB_URL)
 .then(() => console.log('mongodb connect'))
 .catch(e => console.log(`failed to connect mongodb: ${e}`));
 
 app.use(cors(corsOptions)); // CORS 설정
 app.use(express.json()); // request body 파싱
 app.use(logger('tiny')) // logger 설정
+
+app.use('/api/users', usersRouter); // api/users
+app.use('/api/todos', todosRouter); // api/todos
 
 app.get('/hello', (req, res) => {
   res.json('hello world');

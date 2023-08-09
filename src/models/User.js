@@ -39,13 +39,13 @@ const User = mongoose.model('User', userSchema); // User => users
 module.exports = User;
 
 // User 데이터 생성 테스트
-const user = new User({
-  name : "지훈",
-  email : "sdad@google.com",
-  userId : "JeeGae",
-  password : "2qdsf3rf324",
-  isAdmin : true,
-})
+// const user = new User({
+//   name : "지훈",
+//   email : "sdad@google.com",
+//   userId : "JeeGae",
+//   password : "2qdsf3rf324",
+//   isAdmin : true,
+// })
 
-user.save()
-.then(() => console.log('user created!'))
+// user.save()
+// .then(() => console.log('user created!'))
